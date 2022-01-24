@@ -34,7 +34,7 @@ def allsub(s):
     while (count != 0):
         n = 0
         while ((n + count) <= len(s)):
-            sub = s[n:n + count]
+            sub = s[n:s + count]
             n += 1
             substrings.append(sub)
         count -= 1
