@@ -9,7 +9,7 @@
 
 #  Partner Name: Jiaxi Wang
 
-#  Partner UT EID: jw53499
+#  Partner UT EID: JW53499
 
 #  Course Name: CS 313E
 
@@ -24,8 +24,8 @@
 #         common subsequence. The list is empty if there are no
 #         common subsequences.
 
-import sys
 
+import sys
 
 def allsub(s):
     #  look for all the substrings in the string and return a list.
@@ -34,7 +34,7 @@ def allsub(s):
     while (count != 0):
         n = 0
         while ((n + count) <= len(s)):
-            sub = s[n:s + count]
+            sub = s[n:n + count]
             n += 1
             substrings.append(sub)
         count -= 1
@@ -62,7 +62,9 @@ def longest_subsequence(s1, s2):
         for i in common_strings:
             if len(i) == longest_length:
                 l.append(i)
-    return l
+    #  removing duplicates by converting the list into a set.
+    final_l = set(l)
+    return final_l
 
 
 def main():
