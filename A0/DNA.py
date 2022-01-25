@@ -62,9 +62,7 @@ def longest_subsequence(s1, s2):
         for i in common_strings:
             if len(i) == longest_length:
                 l.append(i)
-    #  removing duplicates by converting the list into a set.
-    final_l = set(l)
-    return final_l
+    return l
 
 
 def main():
@@ -81,9 +79,12 @@ def main():
         # call longest_subsequence
         longest_common = longest_subsequence(s1, s2)
         longest_common.sort()
+        
+        #  remove duplicate by converting the list to a set and back to a list
+        final_longest_common = list(set(longest_common))
 
         # write out result(s)
-        for i in longest_common:
+        for i in final_longest_common:
             print(i)
 
         # insert blank line
