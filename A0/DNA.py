@@ -9,7 +9,7 @@
 
 #  Partner Name: Jiaxi Wang
 
-#  Partner UT EID: jw53499
+#  Partner UT EID: JW53499
 
 #  Course Name: CS 313E
 
@@ -24,8 +24,8 @@
 #         common subsequence. The list is empty if there are no
 #         common subsequences.
 
-import sys
 
+import sys
 
 def allsub(s):
     #  look for all the substrings in the string and return a list.
@@ -34,7 +34,7 @@ def allsub(s):
     while (count != 0):
         n = 0
         while ((n + count) <= len(s)):
-            sub = s[n:s + count]
+            sub = s[n:n + count]
             n += 1
             substrings.append(sub)
         count -= 1
@@ -54,10 +54,10 @@ def longest_subsequence(s1, s2):
             continue
 
     #  getting the longest substrings from the common_strings list.
+    l = []
     if len(common_strings) == 0:
         print('No Common Sequence Found')
     else:
-        l = []
         longest_length = len(max(common_strings, key=len))
         for i in common_strings:
             if len(i) == longest_length:
@@ -79,12 +79,15 @@ def main():
         # call longest_subsequence
         longest_common = longest_subsequence(s1, s2)
         longest_common.sort()
+        
+        #  remove duplicate by converting the list to a set and back to a list
+        final_longest_common = list(set(longest_common))
 
         # write out result(s)
-        for i in longest_common:
+        for i in final_longest_common:
             print(i)
 
-            # insert blank line
+        # insert blank line
         print()
 
 
