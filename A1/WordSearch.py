@@ -64,10 +64,11 @@ def read_input():
 def find_word (grid, word):
   i = 1
   j = 1
+
   for w in range(len(word)):
     # row search
     for g in grid:  
-      if word[w] in g:
+      if word[0] in g:
         for gl in range(len(g)): 
           g_index = gl
           w_index = w
