@@ -34,6 +34,7 @@ def find_word (grid, word,row,col):
     dir = [[-1, 0], [1, 0], [1, 1], 
         [1, -1], [-1, -1], [-1, 1],
         [0, 1], [0, -1]]
+    
     if grid[row][col] != word[0]:
         return False
 
@@ -44,7 +45,7 @@ def find_word (grid, word,row,col):
 
         for k in range(1, len(word)):
 
-            if (0 <= rd and 0 <= cd and word[k] == grid[rd][cd]):
+            if (0 <= rd < self.R and 0 <= cd < self.C and word[k] == grid[rd][cd]):
                 rd += x
                 cd += y
 
@@ -56,6 +57,22 @@ def find_word (grid, word,row,col):
             return True
 
     return False
+
+    # Searches given word in a given matrix
+    # in all 8 directions   
+def patternSearch(self, grid, word):
+         
+  # Rows and columns in given grid
+  self.R = len(grid)
+  self.C = len(grid[0])
+         
+  # Consider every point as starting point
+  # and search given word
+  for row in range(self.R):
+    for col in range(self.C):
+      if self.search2D(grid, row, col, word):
+        print("pattern found at " +
+                str(row) + ', ' + str(col))
 
     
     
