@@ -16,7 +16,7 @@
 
 #  Date Created: Jan 26
 
-#  Date Last Modified:
+#  Date Last Modified: Jan 27
 
 import sys
 
@@ -48,19 +48,15 @@ def read_input():
     word_list.append(i)
   
   return word_grid, word_list
-#   for grid in word_grid:
-#     print(grid) 
-  
-#   #for lst in word_list:
-#   print(word_list)
 
-# read_input()
+
 
 # Input: a 2-D list representing the grid of letters and a single
 #        string representing the word to search
 # Output: returns a tuple (i, j) containing the row number and the
 #         column number of the word that you are searching 
 #         or (0, 0) if the word does not exist in the grid
+
 def find_word (grid, word):
   # 8 directions for searching words
   direc = [[-1, 0], [1, 0], [1, 1], 
@@ -70,6 +66,7 @@ def find_word (grid, word):
   rows = len(grid)
   cols = len(grid[0])
 
+  # go through the entire grid
   for r in range(rows):
     
     for c in range(cols):
@@ -77,15 +74,19 @@ def find_word (grid, word):
       # if the first letter matches
       if grid[r][c] == word[0]:
         
+        # case if the word only contains 1 letter, no need to go further
         if len(word) == 1:
           return tuple([r + 1, c + 1])
           
+        # walk through all 8 directions
         for x,y in direc:
           r_direc = r + x
           c_direc = c + y
           
+          # check if the rest of the letters in 8 directions matches the rest of the letters in the word
           for w in range(1, len(word)):
             
+            # assign the boundries of the grid and check letters
             if (0 <= r_direc < rows and 0 <= c_direc < cols and grid[r_direc][c_direc] == word[w]):
               r_direc += x
               c_direc += y
@@ -94,9 +95,11 @@ def find_word (grid, word):
               if w == len(word) - 1:
                 return tuple([r + 1, c + 1])
 
+            # if the rest of the letters don't match the word
             else:
               break
-
+  
+  # no word match found
   return tuple([0, 0])    
 
 
