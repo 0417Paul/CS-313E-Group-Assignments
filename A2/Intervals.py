@@ -1,4 +1,4 @@
-#  File: WordSearch.py
+#  File: Intervals.py
 
 #  Description: take a set of intervals and collapse all the overlapping intervals 
 #  and print the smallest set of non-intersecting intervals in ascending order of the 
