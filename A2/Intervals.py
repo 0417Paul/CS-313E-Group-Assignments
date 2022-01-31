@@ -26,7 +26,23 @@ import sys
 # Output: a list of merged tuples sorted by the lower number of the
 #         interval
 def merge_tuples (tuples_list):
-  pass
+  merged_tuple_list = []
+  l = []
+  x = 0
+  y = 0
+
+  for i in range(0,len(tuples_list),3):
+
+    # comparing the adjacent elements finding the max outer number with (x, y)
+    x = min(tuples_list[i][0],tuples_list[i+1][0],tuples_list[i+2][0])
+    y = max(tuples_list[i][1],tuples_list[i+1][1],tuples_list[i+2][1])  
+    # merging the tuples if they intersect with the largest ourter number
+    l.append(int(x))
+    l.append(int(y))
+    # convert the list of numbers in to pairs of tuple
+  merged_tuple_list = [(l[x],l[x+1]) for x in range(0,len(l),2)]
+
+  return merged_tuple_list
 
 # Input: tuples_list is a list of tuples of denoting intervals
 # Output: a list of tuples sorted by ascending order of the size of
@@ -34,20 +50,36 @@ def merge_tuples (tuples_list):
 #         if two intervals have the size then it will sort by the
 #         lower number in the interval
 def sort_by_interval_size (tuples_list):
-  pass
+  for i in range(len(tuples_list)-1):
+    for j in range(i, len(tuples_list)):
+    # comparing the adjacent elements and calculate the difference of (y-x)
+      dif1 = tuples_list[i][1]-tuples_list[i][0]
+      dif2 = tuples_list[j][1]-tuples_list[j][0]
+      if dif1 > dif2:
+    # swapping if sum of the second tuple is greater than the first pair
+        tuples_list[i], tuples_list[j] = tuples_list[j], tuples_list[i]
+  return tuples_list
 
 
 def main():
+  tuple_list = []
+  # reading the number of pairs of tuples
+  num_pair = int(sys.stdin.readline().strip())
+
   # read the input data and create a list of tuples
+  for row in range(num_pair):
+    t = sys.stdin.readline().strip().split(" ")
+    tuple_list.append((int(t[0]), int(t[1])))
+  tuple_list = sorted(tuple_list, key = lambda x:x[0] + x[1])
 
   # merge the list of tuples
-
+  new_list_tuples = merge_tuples (tuple_list)
   # print the merged list
-
+  print(new_list_tuples)
   # sort the list of tuples according to the size of the interval
-
+  sorted_tuples = sort_by_interval_size (new_list_tuples)
   # print the sorted list
-  pass
+  print(sorted_tuples)
 
 
 
