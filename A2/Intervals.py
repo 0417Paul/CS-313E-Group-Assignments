@@ -22,33 +22,43 @@
 
 import sys
 
-# Input: tuples_list is an unsorted list of tuples denoting intervals
+# Input: tuples_list is an sorted list of tuples denoting intervals
 # Output: a list of merged tuples sorted by the lower number of the
 #         interval
+
+# def is_overlapping(t1,t2):
+#   new_list = [(t1),(t2)]
+#   for i in range (len(new_list)):
+#     if (new_list[i][0] <= new_list[i+1][0] and new_list[i+1][0] <= new_list[i][1]):
+#       return True
+
+
 def merge_tuples (tuples_list):
   merged_tuple_list = []
-  l = []
-  x = 0
-  y = 0
 
-  for i in range(0,len(tuples_list),3):
-
-    # comparing the adjacent elements finding the max outer number with (x, y)
-    x = min(tuples_list[i][0],tuples_list[i+1][0],tuples_list[i+2][0])
-    y = max(tuples_list[i][1],tuples_list[i+1][1],tuples_list[i+2][1])  
-    # merging the tuples if they intersect with the largest ourter number
-    l.append(int(x))
-    l.append(int(y))
-    # convert the list of numbers in to pairs of tuple
-  merged_tuple_list = [(l[x],l[x+1]) for x in range(0,len(l),2)]
+  for i in tuples_list:
+    # if the list of merged intervals is empty, we will append this interval.
+    if not merged_tuple_list:
+      merged_tuple_list.append(i)
+    else:
+      lower = merged_tuple_list[-1]
+      # test for intersection between the last tuple in merged_tuple_list and the next interval in the tuple list:
+      if i[0] <= lower[1]:
+        upperbound = max(lower[1],i[1])
+        merged_tuple_list[-1] = (lower[0],upperbound)
+      else:
+        merged_tuple_list.append(i)
 
   return merged_tuple_list
+
 
 # Input: tuples_list is a list of tuples of denoting intervals
 # Output: a list of tuples sorted by ascending order of the size of
 #         the interval
 #         if two intervals have the size then it will sort by the
 #         lower number in the interval
+
+
 def sort_by_interval_size (tuples_list):
   for i in range(len(tuples_list)-1):
     for j in range(i, len(tuples_list)):
@@ -71,7 +81,6 @@ def main():
     t = sys.stdin.readline().strip().split(" ")
     tuple_list.append((int(t[0]), int(t[1])))
   tuple_list = sorted(tuple_list, key = lambda x:x[0] + x[1])
-
   # merge the list of tuples
   new_list_tuples = merge_tuples (tuple_list)
   # print the merged list
