@@ -70,7 +70,58 @@ def rail_fence_encode ( strng, key ):
 #  Output: function returns a single string that is decoded with
 #          rail fence algorithm
 def rail_fence_decode ( strng, key ):
-  return "" # placeholder for the actual return statement
+  cipher_len = len(strng)
+  lst = [["0"] * cipher_len for i in range(key)]
+  plain_len = 0
+  plain_num = 0
+
+  # when the decoding process haven't been done
+  while plain_len < cipher_len:
+    
+    # going through a zig-zag line in the list starting from [0, 0] and mark these places as "1"
+    while plain_num <= key - 1:
+      lst[plain_num][plain_len] = "1"
+      plain_len += 1
+      plain_num += 1
+
+      # break the loop after the last chr has been reached
+      if plain_len >= cipher_len:
+        break
+    # break the loop after the last chr has been reached
+    if plain_len >= cipher_len:
+      break
+    # go back to row 0 after passing the last line
+    plain_num -= 2
+
+    while plain_num > 0:
+      lst[plain_num][plain_len] = "1"
+      # go back to the line above and move 1 unit to the right
+      plain_num -= 1
+      plain_len += 1
+      
+      # break the loop after the last chr has been reached
+      if plain_len >= cipher_len:
+        break
+
+  # plug in the characters into the list where we marked "1"
+  count = 0
+
+  for i in range(key):
+    for j in range(cipher_len):
+      if lst[i][j] == "1":
+        lst[i][j] = strng[count]
+        count += 1
+
+  # collect all the characters through the zig-zag line we created 
+  plain_text = ""
+
+  for j in range(cipher_len):
+    for i in range(key):
+      if lst[i][j] != "0":
+        plain_text += lst[i][j]
+
+
+  return plain_text # placeholder for the actual return statement
 
 #  Input: strng is a string of characters
 #  Output: function converts all characters to lower case and then
@@ -114,33 +165,40 @@ def main():
   # encrypt and print the encoded text using rail fence cipher
   print("Rail Fence Cipher")
   print()
-  print("Plain Text: ", strng1)
-  print("Key: ", key1)
-  print("Encoded Text: ", rail_fence_encode ( strng1, key1 ))
-  print()
+  print("Plain Text:", strng1, end = "")
+  print("Key:", key1)
+  print("Encoded Text:", rail_fence_encode ( strng1, key1 ))
 
   # read encoded text from stdin
   strng2 = sys.stdin.readline()
   # read the key from stdin
   key2 = int(sys.stdin.readline())
   # decrypt and print the plain text using rail fence cipher
-  print("Encoded Text: ", strng2)
-  print("Enter Key: ", key2)
-  print("Decoded Text: ", rail_fence_decode ( strng2, key2 ))
-  print()
+  print("Encoded Text:", strng2, end = "")
+  print("Enter Key:", key2)
+  print("Decoded Text:", rail_fence_decode ( strng2, key2 ))
 
   # read the plain text from stdin
-
+  strng3 = sys.stdin.readline()
   # read the pass phrase from stdin
-
+  phrase1 = sys.stdin.readline()
   # encrypt and print the encoded text using Vigenere cipher
+  print("Vigenere Cipher")
+  print()
+  print("Plain Text:", strng3, end = "")
+  print("Pass Phrase:", phrase1, end = "")
+  print("Encoded Text:", vigenere_encode ( strng3, phrase1 ))
+  print()
 
   # read the encoded text from stdin
-
+  strng4 = sys.stdin.readline()
   # read the pass phrase from stdin
-
+  phrase2 = sys.stdin.readline()
   # decrypt and print the plain text using Vigenere cipher
-
+  print("Encoded Text:", strng4, end = "")
+  print("Pass Phrase:", phrase2, end = "")
+  print("Decoded Text:", vigenere_decode ( strng4, phrase2 ))
+  print()
 # The line above main is for grading purposes only.
 # DO NOT REMOVE THE LINE ABOVE MAIN
 if __name__ == "__main__":
