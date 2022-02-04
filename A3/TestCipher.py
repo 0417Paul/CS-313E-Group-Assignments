@@ -16,9 +16,12 @@
 
 #  Date Created: Jan 31
 
-#  Date Last Modified:
+#  Date Last Modified: Feb 3
 
+from curses.ascii import isdigit
+from re import I
 import sys
+import string
 
 #  Input: strng is a string of characters and key is a positive
 #         integer 2 or greater and strictly less than the length
@@ -27,40 +30,23 @@ import sys
 #          rail fence algorithm
 def rail_fence_encode ( strng, key ):
   cipher_text = ""
+  inner_step = (key - 2) * 2
+  step = inner_step + 2
 
-  for row in range(key):
+  for i in range(key):
+    index = i
 
-    # encode the first row
-    # a shift is the stright distance the letters take from the top row all the way to bottom and came back
-    shift = 2 * key - 2
-    index = 0
-    #while index < len(strng):
-    if row == 0:
-      while index < len(strng):
-        # the difference between each index is a shift
-        cipher_text += strng[index]
-        index += shift
-    
-    # encode the last row
-    elif row == key - 1:
-      # the first letter in the last row always start at the index equals to key-1, and then it will goes through a shift and 
-      # come back to the bottom row
-      index = row
-      while index < len(strng):
-        cipher_text += strng[index]
-        index += shift
+    while index < len(strng):
+      cipher_text += strng[index]
 
-    # encode the rest of the rows in-between
-    else:
-        # there will be left and right indexes for this case, they will be both on the next line & at the index next to the letter above
-      lft = row
-      rgt = shift - row
-      while lft < len(strng):
-        cipher_text += strng[lft]
-        if rgt < len(strng):          
-          cipher_text += strng[rgt]
-        lft += shift
-        rgt += shift 
+      if 0 < i < key - 1:
+        if index + inner_step < len(strng):
+          cipher_text += strng[index + inner_step]
+      
+      index += step
+
+    if 0 < i < key - 1:
+      inner_step -= 2
 
   return cipher_text # placeholder for the actual return statement
 
@@ -72,36 +58,23 @@ def rail_fence_encode ( strng, key ):
 def rail_fence_decode ( strng, key ):
   cipher_len = len(strng)
   lst = [["0"] * cipher_len for i in range(key)]
-  plain_len = 0
-  plain_num = 0
+  inner_step = (key - 2) * 2
+  step = inner_step + 2
 
-  # when the decoding process haven't been done
-  while plain_len < cipher_len:
-    
-    # going through a zig-zag line in the list starting from [0, 0] and mark these places as "1"
-    while plain_num <= key - 1:
-      lst[plain_num][plain_len] = "1"
-      plain_len += 1
-      plain_num += 1
+  for i in range(key):
+    index = i
 
-      # break the loop after the last chr has been reached
-      if plain_len >= cipher_len:
-        break
-    # break the loop after the last chr has been reached
-    if plain_len >= cipher_len:
-      break
-    # go back to row 0 after passing the last line
-    plain_num -= 2
+    while index < len(strng):
+      lst[i][index] = "1"
 
-    while plain_num > 0:
-      lst[plain_num][plain_len] = "1"
-      # go back to the line above and move 1 unit to the right
-      plain_num -= 1
-      plain_len += 1
+      if 0 < i < key - 1:
+        if index + inner_step < len(strng):
+          lst[i][index + inner_step] = "1"
       
-      # break the loop after the last chr has been reached
-      if plain_len >= cipher_len:
-        break
+      index += step
+
+    if 0 < i < key - 1:
+      inner_step -= 2 
 
   # plug in the characters into the list where we marked "1"
   count = 0
@@ -120,7 +93,6 @@ def rail_fence_decode ( strng, key ):
       if lst[i][j] != "0":
         plain_text += lst[i][j]
 
-
   return plain_text # placeholder for the actual return statement
 
 #  Input: strng is a string of characters
@@ -128,33 +100,68 @@ def rail_fence_decode ( strng, key ):
 #          removes all digits, punctuation marks, and spaces. It
 #          returns a single string with only lower case characters
 def filter_string ( strng ):
-  return "" # placeholder for the actual return statement
+  s_fliter_punc = strng.translate(str.maketrans('', '', string.punctuation))
+  s_filter_digit = ''.join([ch for ch in s_fliter_punc if not ch.isdigit()])
+  s_filter_space_lower = s_filter_digit.strip().lower()
+  s_filter_space_lower = "".join(s_filter_space_lower.split())
+  
+  return s_filter_space_lower  # placeholder for the actual return statement
 
 #  Input: p is a character in the pass phrase and s is a character
 #         in the plain text
 #  Output: function returns a single character encoded using the 
 #          Vigenere algorithm. You may not use a 2-D list 
 def encode_character (p, s):
-  return "" # placeholder for actual return statement
+  encoded_num = ord(p) - 97 + ord(s) 
+  if encoded_num > ord('z'):
+    encoded_num = encoded_num - ord('z') + 96
+  encoded_chr = chr(encoded_num)
+  return encoded_chr # placeholder for actual return statement
 
 #  Input: p is a character in the pass phrase and s is a character
 #         in the plain text
 #  Output: function returns a single character decoded using the 
 #          Vigenere algorithm. You may not use a 2-D list 
 def decode_character (p, s):
-  return "" # placeholder for actual return statement
+  decoded_num = 0
+
+  if ord(p) <= ord(s):
+      decoded_num = abs(ord(p) - ord(s)) + 97
+  elif ord(p) > ord(s):
+      decoded_num = 123 - (ord(p) - ord(s)) 
+  decode_character = chr(decoded_num)
+
+  return decode_character # placeholder for actual return statement
 
 #  Input: strng is a string of characters and phrase is a pass phrase
 #  Output: function returns a single string that is encoded with
 #          Vigenere algorithm
 def vigenere_encode ( strng, phrase ):
-  return "" # placeholder for the actual return statement
+  ph = ""
+  for i in range(len(strng)):
+    ph += phrase[i % len(phrase)]
+  
+  encoded_str = ""
+  for ch in range(len(strng)):
+    encoded_str += encode_character(ph[ch], strng[ch])
+
+  return encoded_str # placeholder for the actual return statement
+#   print(encoded_str)
+
+# vigenere_encode(filter_string("stringwith,punctuation,andCAPITALIZATION"), "cryptograhphy")
 
 #  Input: strng is a string of characters and phrase is a pass phrase
 #  Output: function returns a single string that is decoded with
 #          Vigenere algorithm
 def vigenere_decode ( strng, phrase ):
-  return "" # placeholder for the actual return statement
+  ph = ""
+  for i in range(len(strng)):
+    ph += phrase[i % len(phrase)]
+  
+  decoded_str = ""
+  for ch in range(len(strng)):
+    decoded_str += decode_character(ph[ch], strng[ch])
+  return decoded_str # placeholder for the actual return statement
 
 def main():
   # Does it need a blank line at the top?
@@ -179,21 +186,20 @@ def main():
   print("Decoded Text:", rail_fence_decode ( strng2, key2 ))
 
   # read the plain text from stdin
-  strng3 = sys.stdin.readline()
+  strng3 = filter_string(sys.stdin.readline())
   # read the pass phrase from stdin
-  phrase1 = sys.stdin.readline()
+  phrase1 = filter_string(sys.stdin.readline())
   # encrypt and print the encoded text using Vigenere cipher
   print("Vigenere Cipher")
   print()
   print("Plain Text:", strng3, end = "")
   print("Pass Phrase:", phrase1, end = "")
   print("Encoded Text:", vigenere_encode ( strng3, phrase1 ))
-  print()
 
   # read the encoded text from stdin
-  strng4 = sys.stdin.readline()
+  strng4 = filter_string(sys.stdin.readline())
   # read the pass phrase from stdin
-  phrase2 = sys.stdin.readline()
+  phrase2 = filter_string(sys.stdin.readline())
   # decrypt and print the plain text using Vigenere cipher
   print("Encoded Text:", strng4, end = "")
   print("Pass Phrase:", phrase2, end = "")

@@ -1,0 +1,38 @@
+def rail_fence_encode ( strng, key ):
+  cipher_text = ""
+
+  for row in range(key):
+
+    # encode the first row
+    # a shift is the stright distance the letters take from the top row all the way to bottom and came back
+    shift = 2 * key - 2
+    index = 0
+    #while index < len(strng):
+    if row == 0:
+      while index < len(strng):
+        # the difference between each index is a shift
+        cipher_text += strng[index]
+        index += shift
+    
+    # encode the last row
+    elif row == key - 1:
+      # the first letter in the last row always start at the index equals to key-1, and then it will goes through a shift and 
+      # come back to the bottom row
+      index = row
+      while index < len(strng):
+        cipher_text += strng[index]
+        index += shift
+
+    # encode the rest of the rows in-between
+    else:
+      # there will be left and right indexes for this case, they will be both on the next line & at the index next to the letter above
+      lft = row
+      rgt = shift - row
+      while lft < len(strng):
+        cipher_text += strng[lft]
+        if rgt < len(strng):          
+          cipher_text += strng[rgt]
+        lft += shift
+        rgt += shift 
+
+  return cipher_text # placeholder for the actual return statement
