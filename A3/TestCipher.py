@@ -36,15 +36,20 @@ def rail_fence_encode ( strng, key ):
   for i in range(key):
     index = i
 
+    # for the 1st and last row
+    # a step is the stright distance the letters take from the top row all the way to bottom and came back
     while index < len(strng):
       cipher_text += strng[index]
 
+      # for the rows in-between
+      # inner step is the space between 2 letters on these rows
       if 0 < i < key - 1:
         if index + inner_step < len(strng):
           cipher_text += strng[index + inner_step]
       
       index += step
-
+    
+    # inner step for the next in-between row is always the inner step of current row - 2
     if 0 < i < key - 1:
       inner_step -= 2
 
@@ -61,9 +66,11 @@ def rail_fence_decode ( strng, key ):
   inner_step = (key - 2) * 2
   step = inner_step + 2
 
+  # we start from replacing all places we think there is a letter for "1"
   for i in range(key):
     index = i
 
+    # same logics as above encoding function
     while index < len(strng):
       lst[i][index] = "1"
 
@@ -112,10 +119,17 @@ def filter_string ( strng ):
 #  Output: function returns a single character encoded using the 
 #          Vigenere algorithm. You may not use a 2-D list 
 def encode_character (p, s):
+
+  # use the ASCII table to calculate the reponding letter # in the 2-d list
   encoded_num = ord(p) - 97 + ord(s) 
+
+  # if the number go beyond the z # in the table, we calculate the distance from z and let it restart from a
   if encoded_num > ord('z'):
     encoded_num = encoded_num - ord('z') + 96
+
+  # tranfer it back to character
   encoded_chr = chr(encoded_num)
+
   return encoded_chr # placeholder for actual return statement
 
 #  Input: p is a character in the pass phrase and s is a character
@@ -125,10 +139,13 @@ def encode_character (p, s):
 def decode_character (p, s):
   decoded_num = 0
 
+  # use the ASCII table to calculate the reponding letter # in the 2-d list
   if ord(p) <= ord(s):
       decoded_num = abs(ord(p) - ord(s)) + 97
   elif ord(p) > ord(s):
       decoded_num = 123 - (ord(p) - ord(s)) 
+    
+  # tranfer it back to character
   decode_character = chr(decoded_num)
 
   return decode_character # placeholder for actual return statement
@@ -138,29 +155,33 @@ def decode_character (p, s):
 #          Vigenere algorithm
 def vigenere_encode ( strng, phrase ):
   ph = ""
+
+  # first make the phrase as the same length as string
   for i in range(len(strng)):
     ph += phrase[i % len(phrase)]
   
+  # use the function wrote above to encode the plain string
   encoded_str = ""
   for ch in range(len(strng)):
     encoded_str += encode_character(ph[ch], strng[ch])
 
   return encoded_str # placeholder for the actual return statement
-#   print(encoded_str)
-
-# vigenere_encode(filter_string("stringwith,punctuation,andCAPITALIZATION"), "cryptograhphy")
 
 #  Input: strng is a string of characters and phrase is a pass phrase
 #  Output: function returns a single string that is decoded with
 #          Vigenere algorithm
 def vigenere_decode ( strng, phrase ):
   ph = ""
+
+  # first make the phrase as the same length as string
   for i in range(len(strng)):
     ph += phrase[i % len(phrase)]
   
+  # use the function wrote above to encode the plain string
   decoded_str = ""
   for ch in range(len(strng)):
     decoded_str += decode_character(ph[ch], strng[ch])
+
   return decoded_str # placeholder for the actual return statement
 
 def main():
