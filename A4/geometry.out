@@ -1,0 +1,20 @@
+Distance of Point p from the origin is not greater than the distance of Point q from the origin
+Point p is not inside sphereA
+sphereB is not inside sphereA
+cubeA is not inside sphereA
+cylA is not inside sphereA
+sphereA does intersect sphereB
+cubeB does intersect sphereB
+Volume of the largest Cube that is circumscribed by sphereA is not greater than the volume of cylA
+Point p is not inside cubeA
+sphereA is not inside cubeA
+cubeB is not inside cubeA
+cylA is not inside cubeA
+cubeA does intersect cubeB
+Intersection volume of cubeA and cubeB is not greater than the volume of sphereA
+Surface area of the largest Sphere object inscribed by cubeA is not greater than the surface area of cylA
+Point p is not inside cylA
+sphereA is not inside cylA
+cubeA is not inside cylA
+cylB is not inside cylA
+cylB does not intersect cylA

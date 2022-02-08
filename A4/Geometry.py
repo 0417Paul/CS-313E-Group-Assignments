@@ -1,6 +1,7 @@
 #  File: Geometry.py
 
-#  Description:
+#  Description: Object-Oriented Programing that developed several classes 
+# that are fundamental in Solid Geometry - Point, Sphere, Cube, and Cylinder. 
 
 #  Student Name: Yilin Wen
 
