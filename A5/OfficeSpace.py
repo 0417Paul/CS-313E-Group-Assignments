@@ -16,7 +16,7 @@
 
 #  Date Created: Feb 7, 2022
 
-#  Date Last Modified:
+#  Date Last Modified: Feb 9, 2022
 
 import sys
 # Input: a rectangle which is a tuple of 4 integers (x1, y1, x2, y2)
@@ -59,8 +59,6 @@ def contested_space (bldg):
       if j > 1:
         contested += 1      
   return contested
-#   print(contested)
-# contested_space([[2,3], [1,0]])
 
 # Input: bldg is a 2-D array representing the whole office space
 #        rect is a rectangle in the form of a tuple of 4 integers
@@ -73,8 +71,7 @@ def uncontested_space (bldg, rect):
   # if after the iterance the value representing the area is 1, it means there's only this employee has requested this area
   for x in range(rect[0], rect[2]):
     for y in range(rect[1], rect[3]):
-      bldg[x][y] += 1
-      if bldg[x][y] == 1:
+      if bldg[y][x] == 1:
         guaranteed += 1
   return guaranteed
 
@@ -91,7 +88,7 @@ def request_space (office, cubicles):
   for i in cubicles:
     for x in range(i[0], i[2]):
       for y in range(i[1], i[3]):
-        requested_cell[x][y] += 1
+        requested_cell[y][x] += 1
   return requested_cell
 
 # Input: no input
@@ -113,8 +110,8 @@ def test_cases ():
   assert contested_space([[2,3], [1,0]]) == 2
   assert contested_space([[2,0], [0,0]]) == 1
   # test the area of the uncontested space in the office that the employee gets
-  assert uncontested_space ([[2, 1], [1, 0]],  (0, 0, 2, 1)) == 0
-  assert uncontested_space ([[2, 1], [1, 0]],  (1, 1, 2, 2)) == 1
+  assert uncontested_space ([[2, 1], [1, 0]],  (0, 0, 2, 1)) == 1
+  assert uncontested_space ([[2, 1], [1, 0]],  (1, 1, 2, 2)) == 0
   # test how many employees want each cell in the 2-D list
   assert request_space((0,0,4,4), [(0,0,2,1), (2,1,4,2),(0,0,1,2)]) == [[2, 1, 0, 0], [1, 0, 0, 0], [0, 1, 0, 0], [0, 1, 0, 0]]
   
@@ -140,17 +137,16 @@ def main():
     employee_di[name] = cubicle
 
   # run your test cases
-  print (test_cases())
+  #print (test_cases())
   # print the following results after computation
 
   # compute the total office space
-  whole_office = (0,0,w,h)
+  whole_office = (0,0,h,w)
   print("Total", area(whole_office))
 
   # compute the total unallocated space
   cubes = list(employee_di.values())
   office_list = request_space (whole_office, cubes)
-  #print(office_list)
   print("Unallocated", unallocated_space(office_list))
 
   # compute the total contested space
@@ -160,8 +156,6 @@ def main():
   name_list = list(employee_di.keys())
 
   for na in name_list:
-    # print(office_list)
-    # print(employee_di[na])
     print(na, uncontested_space(office_list, employee_di[na]))
   #uncontested_space (bldg, rect)
 if __name__ == "__main__":
