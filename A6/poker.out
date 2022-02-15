@@ -1,0 +1,13 @@
+Number of players: 3
+
+[[<__main__.Card object at 0x7fd4a8356cd0>, <__main__.Card object at 0x7fd4a82a2880>, <__main__.Card object at 0x7fd4a8356910>, <__main__.Card object at 0x7fd4a8356d90>, <__main__.Card object at 0x7fd4a83565b0>], [<__main__.Card object at 0x7fd4a82a2df0>, <__main__.Card object at 0x7fd4a8356df0>, <__main__.Card object at 0x7fd4a83564f0>, <__main__.Card object at 0x7fd4a8356850>, <__main__.Card object at 0x7fd4a82a2130>], [<__main__.Card object at 0x7fd4a8356070>, <__main__.Card object at 0x7fd4a82a2c10>, <__main__.Card object at 0x7fd4a82a2c70>, <__main__.Card object at 0x7fd4a8356670>, <__main__.Card object at 0x7fd4a8356790>]]
+Player 1 : AH KS JS 5H 3C 
+Player 2 : AS QC QH 3H 3D 
+Player 3 : 10H 7H 6C 5C 4D 
+[[<__main__.Card object at 0x7fd4a8356910>, <__main__.Card object at 0x7fd4a8356d90>, <__main__.Card object at 0x7fd4a8356cd0>, <__main__.Card object at 0x7fd4a83565b0>, <__main__.Card object at 0x7fd4a82a2880>], [<__main__.Card object at 0x7fd4a8356df0>, <__main__.Card object at 0x7fd4a82a2df0>, <__main__.Card object at 0x7fd4a8356850>, <__main__.Card object at 0x7fd4a83564f0>, <__main__.Card object at 0x7fd4a82a2130>], [<__main__.Card object at 0x7fd4a8356790>, <__main__.Card object at 0x7fd4a8356670>, <__main__.Card object at 0x7fd4a82a2c70>, <__main__.Card object at 0x7fd4a82a2c10>, <__main__.Card object at 0x7fd4a8356070>]]
+
+Player 1: High Card
+Player 2: Two Pair
+Player 3: High Card
+
+Player 2 wins.
