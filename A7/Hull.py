@@ -17,7 +17,7 @@
 
 #  Date Created: Feb 15, 2022
 
-#  Date Last Modified: 
+#  Date Last Modified: Feb 16, 2022
 
 import sys
 
@@ -103,7 +103,7 @@ def convex_hull (sorted_points):
     upper_hull.append(p)
   # test the determinate to make sure the points don't make a right turn, 
   # and delete the middle of the last three points from upper_hull
-    while (len(upper_hull) >=3) and det(upper_hull[-3], upper_hull[-2], upper_hull[-1]) >= 0:
+    while (len(upper_hull) >=3) and det(upper_hull[-3], upper_hull[-2], upper_hull[-1]) > 0:
       upper_hull.remove(upper_hull[-2])
 
   # Create an empty list lower_hull that will store the vertices in the lower hull.
@@ -117,7 +117,7 @@ def convex_hull (sorted_points):
   # While lower_hull contains three or more points and the last three
   # points in the lower_hull do not make a right turn do
   # Delete the middle of the last three points from lower_hull
-    while (len(upper_hull) >=3) and det(upper_hull[-3], upper_hull[-2], upper_hull[-1]) >= 0:
+    while (len(lower_hull) >=3) and det(lower_hull[-3], lower_hull[-2], lower_hull[-1]) > 0:
       lower_hull.remove(lower_hull[-2])
 
   # Remove the first and last points for lower_hull to avoid duplication with points in the upper hull.
@@ -131,16 +131,6 @@ def convex_hull (sorted_points):
 
   # Return the convex_hull.
   return convex_hull
-
-
-#   print(convex_hull)
-# lst = [Point(0, 0),  Point(4, 5), Point(2, 2), Point(8, 2), Point(8, 4),
-#          Point(2, 0), Point(-3, 2), Point(5, 3), Point(2, -2)]
-# lst.sort()
-# print(lst)
-# #convex_hull(lst)
-
-
 
 # Input: convex_poly is  a list of Point objects that define the
 #        vertices of a convex polygon in order
@@ -158,16 +148,23 @@ def area_poly (convex_poly):
   det = sum1 - sum2
   area = (1/2) * abs (det)
   return area
-  #print(area)
 
 # Input: no input
 # Output: a string denoting all test cases have passed
 def test_cases():
   # write your own test cases
-  # lst = [Point(0, 0),  Point(4, 5), Point(2, 2), Point(8, 2), Point(8, 4),
-  #        Point(2, 0), Point(-3, 2), Point(5, 3), Point(2, -2)]
-  # lst.sort()
-  # assert convex_hull(lst) = 
+  lst = [Point(0, 0),  Point(4, 5), Point(2, 2), Point(8, 2), Point(8, 4),
+         Point(2, 0), Point(-3, 2), Point(5, 3), Point(2, -2)]
+  lst.sort()
+  for p in lst:
+    print(p)
+
+  lst = [Point(2, 8), Point(5, 7), Point(8, 2), Point(8, 3),
+         Point(3, 3), Point(-3, -2), Point(-5, -1)]
+  lst.sort()
+  for p in lst:
+    print(p)
+
   return "all test cases passed"
 
 def main():
