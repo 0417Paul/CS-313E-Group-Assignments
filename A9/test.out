@@ -1,0 +1,220 @@
+
+Correct! groupSum(0, [2, 4, 8], 10) result: True  expected: True
+
+Correct! groupSum(0, [2, 4, 8], 14) result: True  expected: True
+
+Correct! groupSum(0, [2, 4, 8], 9) result: False  expected: False
+
+Correct! groupSum(0, [2, 4, 8], 8) result: True  expected: True
+
+Correct! groupSum(1, [2, 4, 8], 8) result: True  expected: True
+
+Correct! groupSum(1, [2, 4, 8], 2) result: False  expected: False
+
+Correct! groupSum(0, [1], 1) result: True  expected: True
+
+Correct! groupSum(0, [9], 1) result: False  expected: False
+
+Correct! groupSum(1, [9], 0) result: True  expected: True
+
+Correct! groupSum(0, [], 0) result: True  expected: True
+
+Correct! groupSum(0, [10, 2, 2, 5], 17) result: True  expected: True
+
+Correct! groupSum(0, [10, 2, 2, 5], 15) result: True  expected: True
+
+Correct! groupSum(0, [10, 2, 2, 5], 9) result: True  expected: True
+
+groupSum: passed 13 out of 13 
+
+
+Correct! groupSum6(0, [5, 6, 2], 8) result: True  expected: True
+
+Correct! groupSum6(0, [5, 6, 2], 9) result: False  expected: False
+
+Correct! groupSum6(0, [5, 6, 2], 7) result: False  expected: False
+
+Correct! groupSum6(0, [1], 1) result: True  expected: True
+
+Correct! groupSum6(0, [9], 1) result: False  expected: False
+
+Correct! groupSum6(0, [], 0) result: True  expected: True
+
+Correct! groupSum6(0, [3, 2, 4, 6], 8) result: True  expected: True
+
+Correct! groupSum6(0, [6, 2, 4, 3], 8) result: True  expected: True
+
+Correct! groupSum6(0, [5, 2, 4, 6], 9) result: False  expected: False
+
+Correct! groupSum6(0, [6, 2, 4, 5], 9) result: False  expected: False
+
+Correct! groupSum6(0, [3, 2, 4, 6], 3) result: False  expected: False
+
+Correct! groupSum6(0, [1, 6, 2, 6, 4], 12) result: True  expected: True
+
+Correct! groupSum6(0, [1, 6, 2, 6, 4], 13) result: True  expected: True
+
+Correct! groupSum6(0, [1, 6, 2, 6, 4], 4) result: False  expected: False
+
+Correct! groupSum6(0, [1, 6, 2, 6, 4], 9) result: False  expected: False
+
+Correct! groupSum6(0, [1, 6, 2, 6, 5], 14) result: True  expected: True
+
+Correct! groupSum6(0, [1, 6, 2, 6, 5], 15) result: True  expected: True
+
+Correct! groupSum6(0, [1, 6, 2, 6, 5], 16) result: False  expected: False
+
+groupSum6: passed 18 out of 18 
+
+
+Correct! groupNoAdj(0, [2, 5, 10, 4], 12) result: True  expected: True
+
+Correct! groupNoAdj(0, [2, 5, 10, 4], 14) result: False  expected: False
+
+Correct! groupNoAdj(0, [2, 5, 10, 4], 7) result: False  expected: False
+
+Correct! groupNoAdj(0, [2, 5, 10, 4, 2], 7) result: True  expected: True
+
+Correct! groupNoAdj(0, [2, 5, 10, 4], 9) result: True  expected: True
+
+Correct! groupNoAdj(0, [10, 2, 2, 3, 3], 15) result: True  expected: True
+
+Correct! groupNoAdj(0, [10, 2, 2, 3, 3], 7) result: False  expected: False
+
+Correct! groupNoAdj(0, [], 0) result: True  expected: True
+
+Correct! groupNoAdj(0, [1], 1) result: True  expected: True
+
+Correct! groupNoAdj(0, [9], 1) result: False  expected: False
+
+Correct! groupNoAdj(0, [9], 0) result: True  expected: True
+
+Correct! groupNoAdj(0, [5, 10, 4, 1], 11) result: True  expected: True
+
+groupNoAdj: passed 12 out of 12 
+
+
+Correct! groupSum5(0, [2, 5, 10, 4], 19) result: True  expected: True
+
+Correct! groupSum5(0, [2, 5, 10, 4], 17) result: True  expected: True
+
+Correct! groupSum5(0, [2, 5, 10, 4], 12) result: False  expected: False
+
+Correct! groupSum5(0, [2, 5, 4, 10], 12) result: False  expected: False
+
+Correct! groupSum5(0, [3, 5, 1], 4) result: False  expected: False
+
+Correct! groupSum5(0, [3, 5, 1], 5) result: True  expected: True
+
+Correct! groupSum5(0, [1, 3, 5], 5) result: True  expected: True
+
+Correct! groupSum5(0, [3, 5, 1], 9) result: False  expected: False
+
+Correct! groupSum5(0, [2, 5, 10, 4], 7) result: False  expected: False
+
+Correct! groupSum5(0, [2, 5, 10, 4], 15) result: True  expected: True
+
+Correct! groupSum5(0, [2, 5, 10, 4], 11) result: False  expected: False
+
+Correct! groupSum5(0, [1], 1) result: True  expected: True
+
+Correct! groupSum5(0, [9], 1) result: False  expected: False
+
+Correct! groupSum5(0, [9], 0) result: True  expected: True
+
+Correct! groupSum5(0, [], 0) result: True  expected: True
+
+groupSum5: passed 15 out of 15 
+
+
+Correct! groupSumClump(0, [2, 4, 8], 10) result: True  expected: True
+
+Correct! groupSumClump(0, [1, 2, 4, 8, 1], 14) result: True  expected: True
+
+Correct! groupSumClump(0, [2, 4, 4, 8], 14) result: False  expected: False
+
+Correct! groupSumClump(0, [8, 2, 2, 1], 9) result: True  expected: True
+
+Correct! groupSumClump(0, [8, 2, 2, 1], 11) result: False  expected: False
+
+Correct! groupSumClump(0, [1], 1) result: True  expected: True
+
+Correct! groupSumClump(0, [9], 1) result: False  expected: False
+
+groupSumClump: passed 7 out of 7 
+
+
+Correct! splitArray([2, 2]) result: True  expected: True
+
+Correct! splitArray([2, 3]) result: False  expected: False
+
+Correct! splitArray([5, 2, 3]) result: True  expected: True
+
+Correct! splitArray([5, 2, 2]) result: False  expected: False
+
+Correct! splitArray([1, 1, 1, 1, 1, 1]) result: True  expected: True
+
+Correct! splitArray([1, 1, 1, 1, 1]) result: False  expected: False
+
+Correct! splitArray([]) result: True  expected: True
+
+Correct! splitArray([1]) result: False  expected: False
+
+Correct! splitArray([3, 5]) result: False  expected: False
+
+Correct! splitArray([5, 3, 2]) result: True  expected: True
+
+Correct! splitArray([2, 2, 10, 10, 1, 1]) result: True  expected: True
+
+Correct! splitArray([1, 2, 2, 10, 10, 1, 1]) result: False  expected: False
+
+Correct! splitArray([1, 2, 3, 10, 10, 1, 1]) result: True  expected: True
+
+splitArray: passed 13 out of 13 
+
+
+Correct! splitOdd10([5, 5, 5]) result: True  expected: True
+
+Correct! splitOdd10([5, 5, 6]) result: False  expected: False
+
+Correct! splitOdd10([5, 5, 6, 1]) result: True  expected: True
+
+Correct! splitOdd10([6, 5, 5, 1]) result: True  expected: True
+
+Correct! splitOdd10([6, 5, 5, 1, 10]) result: True  expected: True
+
+Correct! splitOdd10([6, 5, 5, 5, 1]) result: False  expected: False
+
+Correct! splitOdd10([1]) result: True  expected: True
+
+Correct! splitOdd10([]) result: False  expected: False
+
+Correct! splitOdd10([10, 7, 5, 5]) result: True  expected: True
+
+Correct! splitOdd10([10, 0, 5, 5]) result: False  expected: False
+
+Correct! splitOdd10([10, 7, 5, 5, 2]) result: True  expected: True
+
+Correct! splitOdd10([10, 7, 5, 5, 1]) result: False  expected: False
+
+splitOdd10: passed 12 out of 12 
+
+
+Correct! split53([1, 1]) result: True  expected: True
+
+Correct! split53([1, 1, 1]) result: False  expected: False
+
+Correct! split53([2, 4, 2]) result: True  expected: True
+
+Correct! split53([2, 2, 2, 1]) result: False  expected: False
+
+Correct! split53([3, 3, 5, 1]) result: True  expected: True
+
+Correct! split53([3, 5, 8]) result: False  expected: False
+
+Correct! split53([2, 4, 6]) result: True  expected: True
+
+Correct! split53([3, 5, 6, 10, 3, 3]) result: True  expected: True
+
+split53: passed 8 out of 8 
+
