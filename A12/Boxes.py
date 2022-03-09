@@ -1,7 +1,8 @@
 
 #  File: Boxes.py
 
-#  Description:
+#  Description: Finding the largest number of boxes that can fit inside each other 
+#  and give the number of such sets of boxes that do fit.
 
 #  Student Name: Jiaxi Wang
 
@@ -21,6 +22,7 @@
 
 import sys
 
+
 # Input: 2-D list of boxes. Each box of three dimensions is sorted
 #        box_list is sorted
 # Output: function returns two numbers, the maximum number of boxes
@@ -28,6 +30,7 @@ import sys
 #         sets of boxes
 def nesting_boxes (box_list):
   return
+
 
 # returns True if box1 fits inside box2
 def does_fit (box1, box2):
@@ -65,13 +68,13 @@ def main():
 
   # get the maximum number of nesting boxes and the
   # number of sets that have that maximum number of boxes
-  max_boxes, num_sets = nesting_boxes (box_list)
+  # max_boxes, num_sets = nesting_boxes (box_list)
 
-  # print the largest number of boxes that fit
-  print (max_boxes)
+  # # print the largest number of boxes that fit
+  # print (max_boxes)
 
-  # print the number of sets of such boxes
-  print (num_sets)
+  # # print the number of sets of such boxes
+  # print (num_sets)
 
 if __name__ == "__main__":
   main()
